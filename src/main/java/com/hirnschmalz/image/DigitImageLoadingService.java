@@ -1,6 +1,10 @@
 package com.hirnschmalz.image;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,7 +47,7 @@ public class DigitImageLoadingService {
     }
 
     public List<DigitImage> loadDigitImages() throws IOException {
-        List<DigitImage> images = new ArrayList<DigitImage>();
+        List<DigitImage> images = new ArrayList<>();
 
         ByteArrayOutputStream labelBuffer = new ByteArrayOutputStream();
         ByteArrayOutputStream imageBuffer = new ByteArrayOutputStream();
