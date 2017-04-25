@@ -2,6 +2,10 @@ package com.hirnschmalz;
 
 import com.hirnschmalz.image.DigitImage;
 import com.hirnschmalz.image.DigitImageLoadingService;
+import com.hirnschmalz.network.NeuralNetwork;
+import com.hirnschmalz.network.NeuralNetworkImpl;
+
+import org.jooq.lambda.Seq;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,9 +18,7 @@ public class Main {
 
         final DigitImageLoadingService digitImageLoadingService = new DigitImageLoadingService("./data/train-labels.dat", "./data/train-images.dat");
         final List<DigitImage> digitImages = digitImageLoadingService.loadDigitImages();
-        for (DigitImage digitImage : digitImages) {
-            System.out.print(digitImage);
-            System.out.println();
-        }
+        NeuralNetwork neuralNetwork = new NeuralNetworkImpl(784, 89, 10, digitImages, 0.005);
+
     }
 }
