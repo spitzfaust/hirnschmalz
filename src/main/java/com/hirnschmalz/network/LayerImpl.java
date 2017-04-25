@@ -43,11 +43,9 @@ public class LayerImpl implements Layer {
                 }
                 x += parentLayer.getBiasValues()[i] * parentLayer.getBiasWeights()[i];
 
-                if (childLayer == null) {
-                    neuronValues[i] = x;
-                } else {
-                    neuronValues[i] = 1d / (1d + Math.exp(-x));
-                }
+
+                neuronValues[i] = 1d / (1d + Math.exp(-x));
+
             }
         }
     }
@@ -56,7 +54,6 @@ public class LayerImpl implements Layer {
     public void calculateErrors() {
         if (childLayer == null) { // output
             for (int i = 0; i < numberOfNodes; i++) {
-                double x = (desiredValues[i] - neuronValues[i]) * neuronValues[i] * (1d - neuronValues[i]);
                 errors[i] = (desiredValues[i] - neuronValues[i]) * neuronValues[i] * (1d - neuronValues[i]);
             }
         } else if (parentLayer == null) { // input
